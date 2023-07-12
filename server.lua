@@ -1,7 +1,7 @@
 local QBCore = exports['qb-core']:GetCoreObject()
 
 RegisterNetEvent('fs-supports:setCall', function(target)
-    TriggerClientEvent('fs-supports', tonumber(target))
+    TriggerClientEvent('fs-supports:setCall', tonumber(target))
 end)
 
 RegisterNetEvent('fs-supports:stopCall', function(target)

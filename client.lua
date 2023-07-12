@@ -1,4 +1,4 @@
-local connectedId = nil
+local connectedId = "None"
 local QBCore = exports['qb-core']:GetCoreObject()
 lib.registerContext({
     id = 'supports_menu',
@@ -6,7 +6,7 @@ lib.registerContext({
     options = { 
       {
         title = 'Current Session',
-        description = 'Connected to id: ' .. (connectedSupport or 'None'),
+        description = 'Connected to id: ' .. connectedId,
         icon = 'circle-info',
       },
       {
@@ -17,7 +17,7 @@ lib.registerContext({
                 { type = 'input', label = 'ID', placeholder = 'ID' },
             })
             if not input then return end
-            exports['pma-voice']:addPlayerToCall("support")
+            exports['pma-voice']:addPlayerToCall("12341234")
             QBCore.Functions.Notify('Terhubung dengan channel support assist...', 'primary', 7500)
             TriggerServerEvent("fs-supports:setCall", input[1])
             connectedId = input[1]
@@ -28,21 +28,22 @@ lib.registerContext({
         description = 'Close the current session',
         icon = 'power-off',
         onSelect = function()
-            exports['pma-voice']:removePlayerFromCall("support")
+            exports['pma-voice']:removePlayerFromCall("12341234")
             QBCore.Functions.Notify('Support assist session berakhir', 'primary', 7500)
             TriggerServerEvent("fs-supports:stopCall", connectedId)
+			connectedId = "None"
         end,
       },
     }
 })
 
 RegisterNetEvent('fs-supports:setCall', function()
-  exports['pma-voice']:addPlayerToCall("support")
+  exports['pma-voice']:addPlayerToCall("12341234")
   QBCore.Functions.Notify('Anda sekarang terhubung dengan staff admin', 'primary', 7500)
 end)
 
 RegisterNetEvent('fs-supports:stopCall', function()
-  exports['pma-voice']:removePlayerFromCall("support")
+  exports['pma-voice']:removePlayerFromCall("12341234")
   QBCore.Functions.Notify('Support assist session berakhir', 'primary', 7500)
 end)
 
